@@ -62,17 +62,10 @@ public class Principal {
     }
 
     private void listaSeriesBuscadas() {
-        if(dadosSeries.isEmpty()) {
-            System.out.println("Não existem séries buscadas ainda");
-        } else {
-            List<Serie> series = new ArrayList<>();
-            series = dadosSeries.stream()
-                    .map(d -> new Serie(d))
-                    .collect(Collectors.toList());
-            series.stream()
-                    .sorted(Comparator.comparing(Serie::getGenero))
-                    .forEach(System.out::println);
-        }
+        List<Serie> series = repositorio.findAll();
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
 
     private void buscarSerieWeb() {
