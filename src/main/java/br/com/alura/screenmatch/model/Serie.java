@@ -3,10 +3,12 @@ package br.com.alura.screenmatch.model;
 import br.com.alura.screenmatch.service.DeepLService;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 
-@Entity(name = "series")
+@Entity
+@Table(name = "series")
 public class Serie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +30,8 @@ public class Serie {
 
     private String sinopse;
 
-    @Transient
-    private List<Episodio> episodios;
+    @OneToMany(mappedBy = "serie")
+    private List<Episodio> episodios = new ArrayList<>();
 
     public Serie() {}
 

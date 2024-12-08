@@ -2,14 +2,13 @@ package br.com.alura.screenmatch.principal;
 
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
-
+import br.com.alura.screenmatch.service.EnvServices;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Principal {
 
@@ -17,7 +16,7 @@ public class Principal {
     private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados conversor = new ConverteDados();
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "&apikey=6585022c";
+    private final String API_KEY = "&apikey="+ EnvServices.getValue("OMDB_API_KEY");
     private SerieRepository repositorio;
 
     private List<DadosSerie> dadosSeries = new ArrayList<>();
